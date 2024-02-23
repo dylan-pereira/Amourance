@@ -16,5 +16,4 @@ jobs:
           docker build -t amourance ./app
       - name: Test with pytest
         run: |
-        docker run --rm amourance pytest
-    
+          docker run --rm amourance pytest
