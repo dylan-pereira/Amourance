@@ -5,6 +5,8 @@ on:
     branches:
       - 'master'
     types: [review_approved]
+    workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
