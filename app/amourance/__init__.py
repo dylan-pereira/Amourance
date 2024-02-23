@@ -6,6 +6,6 @@ def create_app():
 
     @app.route("/")
     def hello_world():
-        return f"<p>Hello, Monde!</p>"
+        return f"<p>Hello, World!</p>"
 
     return app
