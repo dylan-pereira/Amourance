@@ -1,7 +1,6 @@
 # Amourance
 Projet de CI/CD avec une api pour trouver le pourcentage de match de deux personnes
-
-Consignes:
+## Consignes
 2 à 3 personnes
 Développement d’une webapp faisant appel à une ou plusieurs api externes. Le sujet de la web app est libre.
 2 à 3 end user features (1 par personne)
@@ -25,3 +24,11 @@ Si une clé d’API est nécessaire pour l’utilisation de votre webapp, ne la 
 Communiquez moi la clé d’api à utiliser via Discord en privé si nécessaire.
 Liste d'Apis publiques:
 https://github.com/public-apis/public-apis
+
+## Documentation
+
+### What is it?
+### what service/feature it can provide?
+### How to build?
+### How to test? 
+### How to run locally?
