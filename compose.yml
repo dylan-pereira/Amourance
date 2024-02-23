@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web-app:
+    build:
+      context: ./app
+    image: amourance:latest
+    ports:
+      - "8080:5000"
+    volumes:
+      - ./:/workspace
+      - ./app:/app
