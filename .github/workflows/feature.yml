@@ -1,0 +1,25 @@
+name: Push to feature branch
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: |
+          docker build -t my-flask-app .
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    services:
+      app:
+        image: my-flask-app
+    steps:
+      - name: Test with pytest
+        run: |
+          pytest
