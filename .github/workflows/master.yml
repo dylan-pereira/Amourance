@@ -20,9 +20,10 @@ jobs:
         run: |
           BRANCH_NAME=$(echo $GITHUB_REF | awk -F'/' '{print $3}')
           COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
-          export DOCKER_NAME = amourance:$BRANCH_NAME-$COMMIT_HASH
-          docker build -t $DOCKER_NAME ./app
+          docker build -t dylanpereira/amourance:$BRANCH_NAME-$COMMIT_HASH ./app
       - name: Push Docker image
         run: |
-          docker push dylanpereira/$DOCKER_NAME
+          BRANCH_NAME=$(echo $GITHUB_REF | awk -F'/' '{print $3}')
+          COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
+          docker push dylanpereira/amourance:$BRANCH_NAME-$COMMIT_HASH
       
