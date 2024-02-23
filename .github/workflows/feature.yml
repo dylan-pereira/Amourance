@@ -4,22 +4,16 @@ on:
   push:
     branches:
       - 'feature/**'
+  workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker image
         run: |
-          docker build -t my-flask-app .
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    services:
-      app:
-        image: my-flask-app
-    steps:
+          docker build -t amourance ./app
       - name: Test with pytest
         run: |
-          pytest
+          docker run --rm amourance pytest
