@@ -8,6 +8,7 @@ def test_send_endpoint(client):
     assert b"temperature" in response.data
     assert b"title" in response.data
     assert b"url" in response.data
+    assert b"joke" in response.data
 
 def test_invalid_date_format(client):
     response = client.post('/send', data={'ville': 'Paris', 'date': '24/02/2024'})

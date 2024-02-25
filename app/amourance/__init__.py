@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 import requests
+import os
 
-API_TOKEN_NEWS = "lqX09tlLKxyHeNVIO09wwsaW6XuowzG0e7SaY7bh"
-API_TOKEN_WEATHER = "Y5ede1C+gkqPYNG39IHHtA==3OSzG9RFpdMUohaq"
+API_TOKEN_NEWS = os.environ.get('API_TOKEN_NEWS')
+API_TOKEN_NINJA = os.environ.get('API_TOKEN_NINJA')
 
 def create_app():
     app = Flask(__name__)
@@ -10,6 +11,11 @@ def create_app():
     @app.route("/")
     def home():
         return render_template('home.html')
+
+    @app.route("/send_and_show", methods=['POST'])
+    def send_and_show():
+        response = send()
+        return render_template('home.html', response=response)
 
     
     @app.route("/send", methods=['POST'])
@@ -28,12 +34,22 @@ def create_app():
 
         # Appel à l'API pour la météo
         api_url = 'https://api.api-ninjas.com/v1/weather?city={}'.format(ville)
-        weather_response = requests.get(api_url, headers={'X-Api-Key': API_TOKEN_WEATHER})
+        weather_response = requests.get(api_url, headers={'X-Api-Key': API_TOKEN_NINJA})
         if weather_response.status_code == 200:
             weather_json = weather_response.json()
             temperature = weather_json.get('temp')
         else:
             return {'error': 'Erreur lors de la récupération des données de météo'}
 
-        return {'title': titleNews, 'url': urlNews, 'temperature': temperature}
+        # Appel à l'API pour la joke
+        limit = 1
+        api_url = 'https://api.api-ninjas.com/v1/jokes?limit={}'.format(limit)
+        joke_response = requests.get(api_url, headers={'X-Api-Key': API_TOKEN_NINJA})
+        if joke_response.status_code == 200:
+            joke_json = joke_response.json()
+            joke = joke_json[0].get('joke')
+        else:
+            return {'error': 'Erreur lors de la récupération de la blagounette'}
+
+        return {'title': titleNews, 'url': urlNews, 'temperature': temperature, "joke": joke}
     return app
