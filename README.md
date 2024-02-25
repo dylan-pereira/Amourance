@@ -1,5 +1,4 @@
 # Amourance
-Projet de CI/CD avec une api pour trouver le pourcentage de match de deux personnes
 ## Consignes
 ### Générales:
 2 à 3 personnes
@@ -25,14 +24,21 @@ Si une clé d’API est nécessaire pour l’utilisation de votre webapp, ne la 
 Liste d'Apis publiques:
 https://github.com/public-apis/public-apis
 
-## TODO
-- Choisir 3 features
-- Mettre en place l'app flask
-- Ecrire des tests pour les 3 features
-- Mettre en place la CI
-- Ecrire le DockerFile
-- Ecrire la documentation
-- Envoyer les clé API si on en utilise
+## Sujet choisi
+Nom: Amourance
+Repo Github: https://github.com/dylan-pereira/Amourance
+
+Fonctionnalitées:
+Input de Ville + date
+On récupère la météo de la ville (https://api-ninjas.com/api/weather)
+On affiche l'horoscope du jour (https://aztro.readthedocs.io/en/latest/)
+On affiche un news du jour (https://www.thenewsapi.com/documentation)
+
+Membres:
+Clément Lamoine @LAMOANE 
+Dylan Pereira @Dylann 
+Samuel Ohayon @samom13584 
+
 
 ## Documentation
 
