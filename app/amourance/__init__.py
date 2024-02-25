@@ -1,25 +1,39 @@
 from flask import Flask, render_template, request
 import requests
 
-API_TOKEN = "lqX09tlLKxyHeNVIO09wwsaW6XuowzG0e7SaY7bh"
-url = 'http://127.0.0.1:5000/send'
+API_TOKEN_NEWS = "lqX09tlLKxyHeNVIO09wwsaW6XuowzG0e7SaY7bh"
+API_TOKEN_WEATHER = "Y5ede1C+gkqPYNG39IHHtA==3OSzG9RFpdMUohaq"
+
 def create_app():
     app = Flask(__name__)
 
     @app.route("/")
-    def hello(name=None):
-        return render_template('hello.html', name=name)
+    def home():
+        return render_template('home.html')
+
     
     @app.route("/send", methods=['POST'])
     def send():
-        ville = request.form['texte']
+        ville = request.form['ville']
         date = request.form['date']
-        response = requests.get(f"https://api.thenewsapi.com/v1/news/top?api_token=lqX09tlLKxyHeNVIO09wwsaW6XuowzG0e7SaY7bh&locale=fr&limit=1&language=fr&published_on={date}")
+
+        # Appel à l'API pour les news
+        response = requests.get(f"https://api.thenewsapi.com/v1/news/top?api_token={API_TOKEN_NEWS}&locale=fr&limit=1&language=fr&published_on={date}")
         if response.status_code == 200:
             json = response.json()
             titleNews = json.get('data')[0].get('title')
             urlNews = json.get('data')[0].get('url')
-            return {'title': titleNews, 'url': urlNews}
         else:
-            return {'error': 'Erreur lors de la récupération des données'}
+            return {'error': 'Erreur lors de la récupération des données des news'}
+
+        # Appel à l'API pour la météo
+        api_url = 'https://api.api-ninjas.com/v1/weather?city={}'.format(ville)
+        weather_response = requests.get(api_url, headers={'X-Api-Key': API_TOKEN_WEATHER})
+        if weather_response.status_code == 200:
+            weather_json = weather_response.json()
+            temperature = weather_json.get('temp')
+        else:
+            return {'error': 'Erreur lors de la récupération des données de météo'}
+
+        return {'title': titleNews, 'url': urlNews, 'temperature': temperature}
     return app
