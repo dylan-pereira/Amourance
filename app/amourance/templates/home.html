@@ -15,7 +15,8 @@
     {% if response %}
         <h2>Titre de la news : {{ response.title }}</h2>
         <p>URL de la news : <a href="{{ response.url }}">{{ response.url }}</a></p>
-        <p>Température : {{ response.temperature }}</p>
+        <p>Température : {{ response.temperature }} °C</p>
+        <p>Blagounette : {{ response.joke }}</p>
         <a href="/"><input type="button" value="Reset"></a>
     {% endif %}
 
