@@ -11,6 +11,11 @@ def create_app():
     def home():
         return render_template('home.html')
 
+    @app.route("/send_and_show", methods=['POST'])
+    def send_and_show():
+        response = send()
+        return render_template('home.html', response=response)
+
     
     @app.route("/send", methods=['POST'])
     def send():

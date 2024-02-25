@@ -4,7 +4,7 @@
     <title>CICD</title>
 </head>
 <body>
-    <form action="/send" method="post">
+    <form action="/send_and_show" method="post">
         <label for="ville">Veuillez entrer la ville :</label><br>
         <input type="text" id="ville" name="ville"><br>
         <label for="date">Veuillez entrer une date:</label><br>
@@ -12,5 +12,10 @@
         <input type="submit" value="Valider">
     </form>
 
+    {% if response %}
+        <h2>Titre de la news : {{ response.title }}</h2>
+        <p>URL de la news : <a href="{{ response.url }}">{{ response.url }}</a></p>
+        <p>Température : {{ response.temperature }}</p>
+    {% endif %}
 </body>
 </html>
