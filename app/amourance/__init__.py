@@ -19,4 +19,7 @@ def create_app():
             json = response.json()
             titleNews = json.get('data')[0].get('title')
             urlNews = json.get('data')[0].get('url')
+            return {'title': titleNews, 'url': urlNews}
+        else:
+            return {'error': 'Erreur lors de la récupération des données'}
     return app
