@@ -6,6 +6,10 @@ on:
       - 'feature/**'
   workflow_dispatch:
 
+env:
+  API_TOKEN_NEWS: ${{ secrets.API_TOKEN_NEWS }}
+  API_TOKEN_NINJA: ${{ secrets.API_TOKEN_NINJA }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
